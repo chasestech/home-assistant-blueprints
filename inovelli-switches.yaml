@@ -11,7 +11,7 @@ blueprint:
     action_double_bottom:
       name: Double press bottom button action
       selector:
-        action:
+        action: {}
     action_double_top:
       name: Double press top button action
       selector:
