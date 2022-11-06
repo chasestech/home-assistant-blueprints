@@ -102,12 +102,118 @@ trigger:
   - platform: event
     event_type: zha_event
     event_data:
-      device_ieee: !input switch
+      device_id: !input switch
 action:
   - alias: Bottom Double Press
     if:
       - condition: template
         value_template: >-
-          {{trigger.event.data.args.button == "button_1" and
-          trigger.event.data.args.press_type == "double"}}
+          {{trigger.event.data.command == "button_1_double"}}
     then: !input action_double_bottom
+  - alias: Top Double Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_2_double"}}
+    then: !input action_double_top
+  - alias: Special Double Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_3_double"}}
+    then: !input action_double_special
+
+  - alias: Bottom Triple Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_1_triple"}}
+    then: !input action_triple_bottom
+  - alias: Top Triple Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_2_triple"}}
+    then: !input action_triple_top
+  - alias: Special Triple Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_3_triple"}}
+    then: !input action_triple_special
+
+  - alias: Bottom Quadruple Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_1_quadruple"}}
+    then: !input action_quadruple_bottom
+  - alias: Top Quadruple Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_2_quadruple"}}
+    then: !input action_quadruple_top
+  - alias: Special Quadruple Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_3_quadruple"}}
+    then: !input action_quadruple_special
+
+  - alias: Bottom Quintuple Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_1_quintuple"}}
+    then: !input action_quintuple_bottom
+  - alias: Top Quintuple Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_2_quintuple"}}
+    then: !input action_quintuple_top
+  - alias: Special Quintuple Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_3_quintuple"}}
+    then: !input action_quintuple_special
+
+  - alias: Bottom Hold
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_1_hold"}}
+    then: !input action_hold_bottom
+  - alias: Top Hold
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_2_hold"}}
+    then: !input action_hold_top
+  - alias: Special Hold
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_3_hold"}}
+    then: !input action_hold_special
+
+  - alias: Bottom Release
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_1_release"}}
+    then: !input action_release_bottom
+  - alias: Top Release
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_2_release"}}
+    then: !input action_release_top
+  - alias: Special Release
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_3_release"}}
+    then: !input action_release_special
