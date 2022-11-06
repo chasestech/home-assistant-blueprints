@@ -1,0 +1,78 @@
+blueprint:
+  name: Inovelli Switch Actions
+  description: Handles logic for additional button presses.
+  domain: automation
+  input:
+    switch:
+      name: The switch to be used as the trigger
+      selector:
+        target:
+          device:
+            manufacturer: Inovelli
+    action_double_bottom:
+      name: Double press bottom button action
+      action:
+    action_double_top:
+      name: Double press top button action
+      action:
+    action_double_special:
+      name: Double press special button action
+      action:
+    action_triple_bottom:
+      name: Triple press bottom button action
+      action:
+    action_triple_top:
+      name: Triple press top button action
+      action:
+    action_triple_special:
+      name: Triple press special button action
+      action:
+    action_quadruple_bottom:
+      name: Quadruple press bottom button action
+      action:
+    action_quadruple_top:
+      name: Quadruple press top button action
+      action:
+    action_quadruple_special:
+      name: Quadruple press special button action
+      action:
+    action_quintuple_bottom:
+      name: Quintuple press bottom button action
+      action:
+    action_quintuple_top:
+      name: Quintuple press top button action
+      action:
+    action_quintuple_special:
+      name: Quintuple press special button action
+      action:
+    action_hold_bottom:
+      name: Hold bottom button action
+      action:
+    action_hold_top:
+      name: Hold top button action
+      action:
+    action_hold_special:
+      name: Hold special button action
+      action:
+    action_release_bottom:
+      name: Release bottom button action
+      action:
+    action_release_top:
+      name: Release top button action
+      action:
+    action_release_special:
+      name: Release special button action
+      action:
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_ieee: !input switch
+actions:
+  - alias: Bottom Double Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.args.button == "button_1" and
+          trigger.event.data.args.press_type == "double"}}
+    then: !input action_double_bottom
