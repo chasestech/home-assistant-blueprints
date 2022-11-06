@@ -10,8 +10,7 @@ blueprint:
           manufacturer: Inovelli
     action_double_bottom:
       name: Double press bottom button action
-      default: 
-      - {}
+      default:
       selector:
         action:
     action_double_top:
