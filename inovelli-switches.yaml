@@ -56,7 +56,7 @@ blueprint:
           action:
     action_quintuple_bottom:
       name: Quintuple press bottom button action
-                action:  selector:
+      selector:
         target:
           action:
     action_quintuple_top:
