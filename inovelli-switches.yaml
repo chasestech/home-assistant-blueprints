@@ -8,6 +8,11 @@ blueprint:
       selector:
         device:
           manufacturer: Inovelli
+    action_single_special:
+      name: Single press special button action
+      default:
+      selector:
+        action:
     action_double_bottom:
       name: Double press bottom button action
       default:
@@ -104,6 +109,12 @@ trigger:
     event_data:
       device_id: !input switch
 action:
+  - alias: Special Single Press
+    if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.command == "button_3_single"}}
+    then: !input action_single_special
   - alias: Bottom Double Press
     if:
       - condition: template
