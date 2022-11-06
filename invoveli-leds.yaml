@@ -1,0 +1,74 @@
+# Useful links:
+# https://inovelliusa.github.io/inovelli-notification-calc/
+# https://community.inovelli.com/t/changing-led-bar-for-notifications-in-homeassistant/12063/7
+# https://community.inovelli.com/t/resources-blue-series-smart-2-1-switch-on-off-dimmer-manual/10349
+# https://community.inovelli.com/t/setup-instructions-blue-series-smart-2-1-switch-on-off-dimmer-home-assistant-zha/10456
+blueprint:
+  name: Inovelli LED Notification
+  description: Handles LED notifications
+  domain: script
+  input:
+    switch:
+      name: The switch to send the LED notification
+      selector:
+        multiple: true
+        device:
+          manufacturer: Inovelli
+    notification_type:
+      name: Notification Type
+      default: 1
+      selector:
+        select:
+          options:
+          - label: Solid
+            value: 1
+          - label: Fast Blink
+            value: 2
+          - label: Slow Blink
+            value: 3
+          - label: Pulse
+            value: 4
+          - label: Chase
+            value: 5
+          - label: Open-Close
+            value: 6
+          - label: Small-Big
+            value: 7
+          - label: Clear Notification
+            value: 255
+    notification_duration:
+      name: Notification Duration
+      default: 255
+      description: |
+        1-59: Each interval = 1 second
+        60-119: Each interval = 1 minute
+        120-254: Each interval = 1 hour
+        255: Indefinite duration
+      selector:
+        number:
+          min: 1
+          max: 255
+    notification_color:
+      name: Notification Color
+      default: 1
+      description: "See https://inovelliusa.github.io/inovelli-notification-calc/"
+      selector:
+        number:
+          min: 0
+          max: 255
+    notification_brightness:
+      name: Notification brightness
+      default: 1
+      description: "See https://inovelliusa.github.io/inovelli-notification-calc/"
+      selector:
+        number:
+          min: 0
+          max: 100
+action:
+{% for result in results %}
+    <tr>
+        <td>{{ result[0] }}</td>
+        <td>{{ result[1] }}</td>
+        <td>{{ result[2] }}</td>
+    </tr>
+{% endfor %}
