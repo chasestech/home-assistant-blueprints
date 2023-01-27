@@ -24,7 +24,7 @@ blueprint:
       selector:
         action:
     action_double_special:
-      name: Double press special button action
+      name: Double press special button action (check your device settings, as this defaults to clear notifications)
       default:
       selector:
         action:
@@ -113,7 +113,7 @@ action:
     if:
       - condition: template
         value_template: >-
-          {{trigger.event.data.command == "button_3_single"}}
+          {{trigger.event.data.command == "button_3_press"}}
     then: !input action_single_special
   - alias: Bottom Double Press
     if:
@@ -127,6 +127,8 @@ action:
         value_template: >-
           {{trigger.event.data.command == "button_2_double"}}
     then: !input action_double_top
+  # By default, this is configured to clear LED notifications.
+  # This behavior is controlled by an entity on the device
   - alias: Special Double Press
     if:
       - condition: template
