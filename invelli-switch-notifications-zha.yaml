@@ -6,9 +6,9 @@ blueprint:
 
     When invoking the script, use the target selector for Areas containing switches or specific Devices/Entities.
 
-    Credits to @zanix and @nwithan8 as both their blueprints were used as a base to this one
+    Credits to @dmoralesdev @zanix and @nwithan8 as both their blueprints were used as a base to this one
   domain: script
-  source_url: https://github.com/dmoralesdev/homeassistant/blob/main/blueprints/inovelli_animated_notifications_ZHA.yaml
+  source_url: https://github.com/chasestech/home-assistant-blueprints/blob/main/inovelli-switch-notifications-zha.yaml
 
 fields:
   target:
