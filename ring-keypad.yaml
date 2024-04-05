@@ -158,7 +158,7 @@ action:
               entity_id: !input alarm
               state: disarmed
       sequence:
-        - service: alarm_control_panel.alarm_{{ trigger.id.split("keypad_")[1] }}'
+        - service: alarm_control_panel.alarm_{{ trigger.id.split("keypad_")[1] }}
           data:
             code: >
               {% if trigger.event.data.event_data != none %}
@@ -176,7 +176,7 @@ action:
                 event_data: null
           timeout: '5'
           continue_on_timeout: false
-        - service: alarm_control_panel.alarm_{{ trigger.id.split("keypad_")[1] }}'
+        - service: alarm_control_panel.alarm_{{ trigger.id.split("keypad_")[1] }}
           data:
             code: >
               {% if trigger.event.data.event_data != none %}
