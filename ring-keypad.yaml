@@ -143,6 +143,8 @@ action:
               {% if trigger.event.data.event_data != none %}
                 {{ trigger.event.data.event_data }}
               {% endif %}
+          target:
+            entity_id: !input alarm
     - conditions:
         - condition: and
           conditions:
@@ -162,6 +164,8 @@ action:
               {% if trigger.event.data.event_data != none %}
                 {{ trigger.event.data.event_data }}
               {% endif %}
+          target:
+            entity_id: !input alarm
         - wait_for_trigger:
             - platform: event
               event_type: zwave_js_notification
@@ -178,6 +182,8 @@ action:
               {% if trigger.event.data.event_data != none %}
                 {{ trigger.event.data.event_data }}
               {% endif %}
+          target:
+            entity_id: !input alarm
     - conditions:
         - condition: trigger
           id:
