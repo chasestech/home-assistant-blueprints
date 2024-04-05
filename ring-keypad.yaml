@@ -34,6 +34,20 @@ blueprint:
       default: []
       selector:
         action:
+    arm_delay:
+      name: Arming Delay Time
+      description: The time to delay arming the system
+      default: 60
+      selector:
+        number:
+          mode: box
+    trigger_delay:
+      name: Trigger Delay Time
+      description: The time to delay triggering the system
+      default: 60
+      selector:
+        number:
+          mode: box
 variables:
   alarm: !input alarm
 mode: parallel
@@ -262,7 +276,10 @@ action:
             endpoint: "0"
             property: "18"
             property_key: "7"
-            value: "{{ state_attr(alarm, 'delay') }}"
+            # For now, we don't have the ability to pull this as a state attribute for the manual alarm
+            # Pull as a variable instead
+            # value: "{{ state_attr(alarm, 'delay') }}"
+            value: !input arm_delay
     - conditions:
         - condition: trigger
           id: alarm_pending
@@ -275,7 +292,10 @@ action:
             endpoint: "0"
             property: "17"
             property_key: "7"
-            value: "{{ state_attr(alarm, 'delay') }}"
+            # For now, we don't have the ability to pull this as a state attribute for the manual alarm
+            # Pull as a variable instead
+            # value: "{{ state_attr(alarm, 'delay') }}"
+            value: !input trigger_delay
     - conditions:
         - condition: trigger
           id: alarm_triggered
