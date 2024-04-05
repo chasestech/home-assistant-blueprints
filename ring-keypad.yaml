@@ -139,7 +139,6 @@ action:
       sequence:
         - service: alarm_control_panel.alarm_disarm
           data:
-            entity_id: !input alarm
             code: >
               {% if trigger.event.data.event_data != none %}
                 {{ trigger.event.data.event_data }}
@@ -159,9 +158,6 @@ action:
       sequence:
         - service: alarm_control_panel.alarm_{{ trigger.id.split("keypad_")[1] }}'
           data:
-            entity_id: !input alarm
-            mode: '{{ trigger.id.split("keypad_")[1] }}'
-            force: false
             code: >
               {% if trigger.event.data.event_data != none %}
                 {{ trigger.event.data.event_data }}
@@ -178,9 +174,6 @@ action:
           continue_on_timeout: false
         - service: alarm_control_panel.alarm_{{ trigger.id.split("keypad_")[1] }}'
           data:
-            entity_id: !input alarm
-            mode: '{{ trigger.id.split("keypad_")[1] }}'
-            force: true
             code: >
               {% if trigger.event.data.event_data != none %}
                 {{ trigger.event.data.event_data }}
