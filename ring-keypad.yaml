@@ -104,15 +104,15 @@ trigger:
       device_id: !input 'keypad'
       event_type: 19
     id: keypad_medical
-  - platform: event
-    event_type: "alarmo_failed_to_arm"
-    event_data:
-      reason: "invalid_code"
-    id: invalid_code
-  - platform: event
-    event_type: "alarmo_failed_to_arm"
-    event_data:
-      reason: "open_sensors"
+  # - platform: event
+  #   event_type: "alarmo_failed_to_arm"
+  #   event_data:
+  #     reason: "invalid_code"
+  #   id: invalid_code
+  # - platform: event
+  #   event_type: "alarmo_failed_to_arm"
+  #   event_data:
+  #     reason: "open_sensors"
     id: need_bypass
   - platform: state
     entity_id: !input alarm
@@ -130,6 +130,14 @@ trigger:
     entity_id: !input alarm
     to: armed_home
     id: alarm_armed_home
+  - platform: state
+    entity_id: !input alarm
+    to: armed_night
+    id: alarm_armed_night
+  - platform: state
+    entity_id: !input alarm
+    to: armed_vacation
+    id: alarm_armed_vacation
   - platform: state
     entity_id: !input alarm
     to: pending
@@ -239,8 +247,12 @@ action:
             property_key: "1"
             value: 99
     - conditions:
-        - condition: trigger
-          id: alarm_armed_away
+        - condition: or
+          conditions:
+            - condition: trigger
+              id: alarm_armed_away
+            - condition: trigger
+              id: alarm_armed_vacation
       sequence:
         - service: zwave_js.set_value
           target:
@@ -252,8 +264,12 @@ action:
             property_key: "1"
             value: 99
     - conditions:
-        - condition: trigger
-          id: alarm_armed_home
+        - condition: or
+          conditions:
+            - condition: trigger
+              id: alarm_armed_home
+            - condition: trigger
+              id: alarm_armed_night
       sequence:
         - service: zwave_js.set_value
           target:
