@@ -1,9 +1,9 @@
 # Copied from: https://github.com/dmoralesdev/homeassistant/blob/98cde2356f7a00fdc0640add3e2e7c48b72c4114/blueprints/inovelli_animated_notifications_ZHA.yaml
 # Additional inspiration from: https://github.com/zanix/home-assistant-blueprints/blob/b6c34f8df8c161bc04be9f4999151d4fc5bb8996/script/inovelli_blue_led_zigbee2mqtt.yaml
 blueprint:
-  name: "Inovelli Blue VZM31-SN - Animated Notifications (ZHA)"
+  name: "Inovelli Blue Switches - Animated Notifications (ZHA)"
   description: |
-    Blueprint for Inovelli Blue Series (Model VZM31-SN) switches, using the LED bar to send animated notification effects to individual or multiple switches at the same time using ZHA. 
+    Blueprint for Inovelli Blue Series switches, using the LED bar to send animated notification effects to individual or multiple switches at the same time using ZHA. 
 
     When invoking the script, use the target selector for Areas containing switches or specific Devices/Entities.
 
