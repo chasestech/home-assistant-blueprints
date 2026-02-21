@@ -1,4 +1,5 @@
 # Copied from: https://github.com/dmoralesdev/homeassistant/blob/98cde2356f7a00fdc0640add3e2e7c48b72c4114/blueprints/inovelli_animated_notifications_ZHA.yaml
+# Additional inspiration from: https://github.com/zanix/home-assistant-blueprints/blob/b6c34f8df8c161bc04be9f4999151d4fc5bb8996/script/inovelli_blue_led_zigbee2mqtt.yaml
 blueprint:
   name: "Inovelli Blue VZM31-SN - Animated Notifications (ZHA)"
   description: |
@@ -173,6 +174,15 @@ variables:
   area: "{{ target.area_id|default([])|lower }}"
   device: "{{ target.device_id|default([])|lower }}"
   entity: "{{ target.entity_id|default([])|lower }}"
+  models:
+    - VZM30-SN
+    - On/off switch
+    - VZM31-SN
+    - 2-in-1 switch + dimmer
+    - VZM32-SN
+    - mmWave Zigbee Dimmer
+    - VZM35-SN
+    - Fan controller
   entity_list: >
     {% set switch = namespace(entities=[]) %}
 
@@ -194,7 +204,7 @@ variables:
       {# Detect switches #}
       {% for area in areas.areas %}
         {% for ent in area_entities(area) %}
-          {% if is_device_attr(ent, 'model', 'VZM31-SN') and ent.split('.')[0] == 'light' %}
+          {% if device_attr(ent, 'model') in models and ent.split('.')[0] == 'light' %}
             {% set switch.entities = switch.entities + [ent|string|trim] %}
           {% endif %}
         {% endfor %}
@@ -218,7 +228,7 @@ variables:
       {# Detect switches #}
       {% for device in devices.devices %}
         {% for ent in device_entities(device) %}
-          {% if is_device_attr(ent, 'model', 'VZM31-SN') and ent.split('.')[0] == 'light' %}
+          {% if device_attr(ent, 'model') in models and ent.split('.')[0] == 'light' %}
             {% set switch.entities = switch.entities + [ent|string|trim] %}
           {% endif %}
         {% endfor %}
@@ -241,7 +251,7 @@ variables:
       {% endif %}
       {# Detect switches #}
       {% for ent in entities.entities %}
-        {% if is_device_attr(ent, 'model', 'VZM31-SN') and ent.split('.')[0] == 'light' %}
+        {% if device_attr(ent, 'model') in models and ent.split('.')[0] == 'light' %}
           {% set switch.entities = switch.entities + [ent|string|trim] %}
         {% endif %}
       {% endfor %}
